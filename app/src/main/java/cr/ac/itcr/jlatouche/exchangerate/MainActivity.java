@@ -31,6 +31,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //This sets the about
+        TextView aboutTextView = findViewById(R.id.infoTextView);
+        aboutTextView.setText("Jason Latouche \n" +
+                "2015146294 \n" +
+                "Desarrollo de Aplicaciones para Dispositivos Móviles");
+
         //Used to get today's date in dd/MM/yyyy format
         date = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date());
 
