@@ -1,3 +1,16 @@
+/*
+ * Tarea 1
+ * Jason Latouche Jiménez
+ * 2015146294
+ *
+ * Desarrollo de Aplicaciones para Dispositivos Móviles (IC8041)
+ * Escuela de Computación
+ *
+ * Instituto Tecnológico de Costa Rica
+ * Sede central de Cartago
+ *
+ */
+
 package cr.ac.itcr.jlatouche.exchangerate;
 
 import android.os.AsyncTask;
@@ -33,9 +46,7 @@ public class MainActivity extends AppCompatActivity {
 
         //This sets the about
         TextView aboutTextView = findViewById(R.id.infoTextView);
-        aboutTextView.setText("Jason Latouche \n" +
-                "2015146294 \n" +
-                "Desarrollo de Aplicaciones para Dispositivos Móviles");
+        aboutTextView.setText("Jason Latouche");
 
         //Used to get today's date in dd/MM/yyyy format
         date = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date());
