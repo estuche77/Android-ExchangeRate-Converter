@@ -18,6 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
+            android:padding="5dp"
             android:text="Getting exchange rate..." />
 
         <EditText
@@ -29,7 +30,7 @@
             android:layout_marginTop="41dp"
             android:ems="10"
             android:hint="United States Dollar"
-            android:inputType="textPersonName" />
+            android:inputType="none|numberDecimal" />
 
         <RadioGroup
             android:layout_width="wrap_content"
@@ -45,6 +46,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:checked="true"
+                android:onClick="onRadioButtonChanged"
                 android:text="USD to CRC" />
 
             <RadioButton
@@ -52,6 +54,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:onClick="onRadioButtonChanged"
                 android:text="CRC to USD" />
         </RadioGroup>
 
@@ -62,6 +65,7 @@
             android:layout_below="@+id/radioGroup"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="32dp"
+            android:onClick="onCalculateButton"
             android:text="Calculate" />
 
         <TextView
