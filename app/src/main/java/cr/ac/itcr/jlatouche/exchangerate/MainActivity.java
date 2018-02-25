@@ -20,12 +20,22 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        String date = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date());
-        String bccrLink = "http://indicadoreseconomicos.bccr.fi.cr/indicadoreseconomicos/WebServices/wsIndicadoresEconomicos.asmx/ObtenerIndicadoresEconomicosXML?tcIndicador=318&tcFechaInicio=" + date + "&tcFechaFinal=" + date + "&tcNombre=AndroidApp&tnSubNiveles=n";
+        //Used to get today's date in dd/MM/yyyy format
+        String date =
+                new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date());
 
+        //This link will be used to fetch an XML from BCCR API
+        final String bccrLink =
+                "http://indicadoreseconomicos.bccr.fi.cr/indicadoreseconomicos/WebServices/" +
+                        "wsIndicadoresEconomicos.asmx/ObtenerIndicadoresEconomicosXML?" +
+                        "tcIndicador=318&tcFechaInicio=" + date + "&tcFechaFinal=" + date +
+                        "&tcNombre=AndroidApp&tnSubNiveles=n";
+
+        new HttpGetRequest().execute(bccrLink);
 
     }
 
+    //This class will handle the HTTP request
     public class HttpGetRequest extends AsyncTask<String, Void, String> {
         public static final String REQUEST_METHOD = "GET";
         public static final int READ_TIMEOUT = 15000;
@@ -34,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected String doInBackground(String... params){
             String stringUrl = params[0];
-            String result;
+            String data;
             String inputLine;
 
             try {
@@ -71,14 +81,14 @@ public class MainActivity extends AppCompatActivity {
                 streamReader.close();
 
                 //Set our result equal to our stringBuilder
-                result = stringBuilder.toString();
+                data = stringBuilder.toString();
             }
             catch(IOException e){
                 e.printStackTrace();
-                result = null;
+                data = null;
             }
 
-            return result;
+            return data;
         }
 
         protected void onPostExecute(String result){
