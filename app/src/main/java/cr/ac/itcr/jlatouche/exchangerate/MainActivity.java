@@ -3,6 +3,7 @@ package cr.ac.itcr.jlatouche.exchangerate;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -12,8 +13,12 @@ import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class MainActivity extends AppCompatActivity {
+
+    private static double exchangeRate = 0.0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,8 +96,22 @@ public class MainActivity extends AppCompatActivity {
             return data;
         }
 
+        @Override
         protected void onPostExecute(String result){
             super.onPostExecute(result);
+
+            //Find where the exchange rate double is stored
+            Pattern pattern = Pattern.compile("(\\d*\\.(\\d){2,})");
+            Matcher matcher = pattern.matcher(result);
+
+            while (matcher.find()) {
+                String string = matcher.group();
+                exchangeRate = Double.parseDouble(string);
+            }
+
+            //Shows a message to the user
+            Toast.makeText(getApplicationContext(), "Today's exchange rate received", Toast.LENGTH_SHORT).show();
+
 
         }
     }
